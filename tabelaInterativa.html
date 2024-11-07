@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Periódica Interativa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Tabela periódica */
+        .table {
+            display: grid;
+            grid-template-columns: repeat(18, 60px);
+            grid-template-rows: repeat(10, 60px);
+            gap: 3px;
+            /* Diminui o espaçamento entre os elementos */
+            position: relative;
+            margin: 40px 0;
+            /* Aumenta a margem superior e inferior */
+            padding: 20px;
+            /* Adiciona um pouco de padding para afastar os elementos das bordas */
+            background-color: #ffffff;
+            /* Adiciona fundo branco à área da tabela */
+            border-radius: 10px;
+            /* Bordas arredondadas para um visual mais suave */
+        }
+
+        /* Estilo para os elementos da tabela */
+        .element {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+            padding: 5px;
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+            /* Adiciona z-index para controlar o empilhamento dos elementos */
+            overflow: visible;
+            /* Garante que o texto não será cortado */
+            white-space: nowrap;
+            /* Impede a quebra de linha dentro do texto */
+            text-overflow: ellipsis;
+            /* Adiciona '...' caso o texto ultrapasse o limite */
+        }
+
+        /* Efeito de hover */
+        .element:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.05);
+            z-index: 2;
+            /* Coloca o elemento em destaque ao passar o mouse */
+        }
+
+        /* Categorias dos elementos */
+        .alkali {
+            background-color: #ffcccc;
+        }
+
+        .alkaline-earth {
+            background-color: #ccffcc;
+        }
+
+        .transition-metal {
+            background-color: #ccccff;
+        }
+
+        .post-transition-metal {
+            background-color: #ffebcc;
+        }
+
+        .metalloid {
+            background-color: #ffffcc;
+        }
+
+        .non-metal {
+            background-color: #ffccff;
+        }
+
+        .halogen {
+            background-color: #ffb3b3;
+        }
+
+        .noble-gas {
+            background-color: #b3b3ff;
+        }
+
+        .lanthanide {
+            background-color: #ffccff;
+        }
+
+        .actinide {
+            background-color: #ccffff;
+        }
+
+        /* Caixa de informações sobre o elemento */
+        .element-info {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            border: 1px solid #000;
+            padding: 8px;
+            border-radius: 5px;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .element.active .element-info {
+            display: block;
+            /* Mostrar a informação quando ativo */
+        }
+
+        /* Legenda */
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            gap: 10px;
+            /* Diminui o espaçamento entre as legendas */
+            width: 100%;
+            max-width: 800px;
+            /* Limita a largura para não esticar muito em telas grandes */
+            text-align: center;
+        }
+
+        .legend div {
+            width: 18px;
+            /* Menor largura */
+            height: 18px;
+            /* Menor altura */
+            margin-right: 5px;
+            /* Distância entre a caixa de cor e o texto */
+            border: 1px solid #000;
+        }
+
+        .legend span {
+            margin-left: 5px;
+            font-size: 13px;
+            /* Menor tamanho de fonte */
+            display: inline-block;
+            line-height: 18px;
+            white-space: nowrap;
+            /* Impede que o texto ultrapasse a largura disponível */
+        }
+
+        /* Estilo do botão de navegação */
+        .button-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 16px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .button-link:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1200px) {
+            .table {
+                grid-template-columns: repeat(12, 60px);
+            }
+
+            .element {
+                font-size: 12px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .table {
+                grid-template-columns: repeat(8, 60px);
+            }
+
+            .element {
+                font-size: 10px;
+                height: 45px;
+            }
+
+            .legend {
+                justify-content: space-around;
+                margin-top: 10px;
+            }
+
+            .legend span {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .table {
+                grid-template-columns: repeat(9, 60px);
+                grid-template-rows: repeat(18, 60px);
+            }
+
+            /* Ajustando os elementos na versão mobile */
+            .element {
+                font-size: 12px;
+                padding: 3px;
+            }
+
+            /* Ajuste para a legenda no mobile */
+            .legend {
+                justify-content: space-around;
+                margin-top: 10px;
+            }
+
+            .legend div {
+                width: 14px;
+                /* Reduz a largura da caixa de cor */
+                height: 14px;
+                /* Reduz a altura da caixa de cor */
+            }
+
+            .legend span {
+                font-size: 12px;
+                word-wrap: break-word;
+                /* Permite que o texto seja quebrado em várias linhas */
+            }
+        }
+
+        @media (max-width: 400px) {
+            .table {
+                grid-template-columns: repeat(4, 45px);
+            }
+
+            .element {
+                font-size: 8px;
+                height: 35px;
+            }
+
+            .legend div {
+                width: 12px;
+                height: 12px;
+            }
+
+            .legend span {
+                font-size: 10px;
+            }
+        }
+
+        #go-to-page {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #go-to-page:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="table">
+        <!-- 1ª linha -->
+        <div class="element noble-gas" data-symbol="H" data-name="Hidrogênio" data-atomic="1">H</div>
+        <div></div>
+        <div class="element noble-gas" data-symbol="He" data-name="Hélio" data-atomic="2">He</div>
+
+        <!-- 2ª linha -->
+        <div class="element alkali" data-symbol="Li" data-name="Lítio" data-atomic="3">Li</div>
+        <div class="element alkaline-earth" data-symbol="Be" data-name="Berílio" data-atomic="4">Be</div>
+        <div class="element metalloid" data-symbol="B" data-name="Boro" data-atomic="5">B</div>
+        <div class="element non-metal" data-symbol="C" data-name="Carbono" data-atomic="6">C</div>
+        <div class="element non-metal" data-symbol="N" data-name="Nitrogênio" data-atomic="7">N</div>
+        <div class="element non-metal" data-symbol="O" data-name="Oxigênio" data-atomic="8">O</div>
+        <div class="element halogen" data-symbol="F" data-name="Flúor" data-atomic="9">F</div>
+        <div class="element noble-gas" data-symbol="Ne" data-name="Neônio" data-atomic="10">Ne</div>
+
+        <!-- 3ª linha -->
+        <div class="element alkali" data-symbol="Na" data-name="Sódio" data-atomic="11">Na</div>
+        <div class="element alkaline-earth" data-symbol="Mg" data-name="Magnésio" data-atomic="12">Mg</div>
+        <div class="element transition-metal" data-symbol="Al" data-name="Alumínio" data-atomic="13">Al</div>
+        <div class="element metalloid" data-symbol="Si" data-name="Silício" data-atomic="14">Si</div>
+        <div class="element non-metal" data-symbol="P" data-name="Fósforo" data-atomic="15">P</div>
+        <div class="element non-metal" data-symbol="S" data-name="Enxofre" data-atomic="16">S</div>
+        <div class="element halogen" data-symbol="Cl" data-name="Cloro" data-atomic="17">Cl</div>
+        <div class="element noble-gas" data-symbol="Ar" data-name="Argônio" data-atomic="18">Ar</div>
+
+        <!-- 4ª linha -->
+        <div class="element alkali" data-symbol="K" data-name="Potássio" data-atomic="19">K</div>
+        <div class="element alkaline-earth" data-symbol="Ca" data-name="Cálcio" data-atomic="20">Ca</div>
+        <div class="element transition-metal" data-symbol="Sc" data-name="Escândio" data-atomic="21">Sc</div>
+        <div class="element transition-metal" data-symbol="Ti" data-name="Titânio" data-atomic="22">Ti</div>
+        <div class="element transition-metal" data-symbol="V" data-name="Vanádio" data-atomic="23">V</div>
+        <div class="element transition-metal" data-symbol="Cr" data-name="Cromo" data-atomic="24">Cr</div>
+        <div class="element transition-metal" data-symbol="Mn" data-name="Manganês" data-atomic="25">Mn</div>
+        <div class="element transition-metal" data-symbol="Fe" data-name="Ferro" data-atomic="26">Fe</div>
+        <div class="element transition-metal" data-symbol="Co" data-name="Cobalto" data-atomic="27">Co</div>
+        <div class="element transition-metal" data-symbol="Ni" data-name="Níquel" data-atomic="28">Ni</div>
+        <div class="element transition-metal" data-symbol="Cu" data-name="Cobre" data-atomic="29">Cu</div>
+        <div class="element transition-metal" data-symbol="Zn" data-name="Zinco" data-atomic="30">Zn</div>
+        <div class="element post-transition-metal" data-symbol="Ga" data-name="Gálio" data-atomic="31">Ga</div>
+        <div class="element metalloid" data-symbol="Ge" data-name="Germânio" data-atomic="32">Ge</div>
+        <div class="element non-metal" data-symbol="As" data-name="Arsênio" data-atomic="33">As</div>
+        <div class="element non-metal" data-symbol="Se" data-name="Selênio" data-atomic="34">Se</div>
+        <div class="element halogen" data-symbol="Br" data-name="Bromo" data-atomic="35">Br</div>
+        <div class="element noble-gas" data-symbol="Kr" data-name="Criptônio" data-atomic="36">Kr</div>
+
+        <!-- 5ª linha -->
+        <div class="element alkali" data-symbol="Rb" data-name="Rubídio" data-atomic="37">Rb</div>
+        <div class="element alkaline-earth" data-symbol="Sr" data-name="Estrôncio" data-atomic="38">Sr</div>
+        <div class="element transition-metal" data-symbol="Y" data-name="Ítrio" data-atomic="39">Y</div>
+        <div class="element transition-metal" data-symbol="Zr" data-name="Zircônio" data-atomic="40">Zr</div>
+        <div class="element transition-metal" data-symbol="Nb" data-name="Nióbio" data-atomic="41">Nb</div>
+        <div class="element transition-metal" data-symbol="Mo" data-name="Molibdênio" data-atomic="42">Mo</div>
+        <div class="element transition-metal" data-symbol="Tc" data-name="Tecnécio" data-atomic="43">Tc</div>
+        <div class="element transition-metal" data-symbol="Ru" data-name="Rutenio" data-atomic="44">Ru</div>
+        <div class="element transition-metal" data-symbol="Rh" data-name="Ródio" data-atomic="45">Rh</div>
+        <div class="element transition-metal" data-symbol="Pd" data-name="Paládio" data-atomic="46">Pd</div>
+        <div class="element transition-metal" data-symbol="Ag" data-name="Prata" data-atomic="47">Ag</div>
+        <div class="element post-transition-metal" data-symbol="Cd" data-name="Cádmio" data-atomic="48">Cd</div>
+        <div class="element post-transition-metal" data-symbol="In" data-name="Índio" data-atomic="49">In</div>
+        <div class="element metalloid" data-symbol="Sn" data-name="Estanho" data-atomic="50">Sn</div>
+        <div class="element non-metal" data-symbol="Sb" data-name="Antimônio" data-atomic="51">Sb</div>
+        <div class="element non-metal" data-symbol="Te" data-name="Telúrio" data-atomic="52">Te</div>
+        <div class="element halogen" data-symbol="I" data-name="Iodo" data-atomic="53">I</div>
+        <div class="element noble-gas" data-symbol="Xe" data-name="Xenônio" data-atomic="54">Xe</div>
+
+        <!-- 6ª linha -->
+        <div class="element alkali" data-symbol="Cs" data-name="Césio" data-atomic="55">Cs</div>
+        <div class="element alkaline-earth" data-symbol="Ba" data-name="Bário" data-atomic="56">Ba</div>
+        <div class="element lanthanide" data-symbol="La" data-name="Lantânio" data-atomic="57">La</div>
+        <div class="element lanthanide" data-symbol="Ce" data-name="Cério" data-atomic="58">Ce</div>
+        <div class="element lanthanide" data-symbol="Pr" data-name="Praseodímio" data-atomic="59">Pr</div>
+        <div class="element lanthanide" data-symbol="Nd" data-name="Neodímio" data-atomic="60">Nd</div>
+        <div class="element lanthanide" data-symbol="Pm" data-name="Promécio" data-atomic="61">Pm</div>
+        <div class="element lanthanide" data-symbol="Sm" data-name="Samário" data-atomic="62">Sm</div>
+        <div class="element lanthanide" data-symbol="Eu" data-name="Europiópio" data-atomic="63">Eu</div>
+        <div class="element lanthanide" data-symbol="Gd" data-name="Gadolínio" data-atomic="64">Gd</div>
+        <div class="element lanthanide" data-symbol="Tb" data-name="Terbínio" data-atomic="65">Tb</div>
+        <div class="element lanthanide" data-symbol="Dy" data-name="Disprósio" data-atomic="66">Dy</div>
+        <div class="element lanthanide" data-symbol="Ho" data-name="Hólmio" data-atomic="67">Ho</div>
+        <div class="element lanthanide" data-symbol="Er" data-name="Érbio" data-atomic="68">Er</div>
+        <div class="element lanthanide" data-symbol="Tm" data-name="Túlio" data-atomic="69">Tm</div>
+        <div class="element lanthanide" data-symbol="Yb" data-name="Itérbio" data-atomic="70">Yb</div>
+        <div class="element lanthanide" data-symbol="Lu" data-name="Lutécio" data-atomic="71">Lu</div>
+
+        <!-- 7ª linha -->
+        <div class="element alkali" data-symbol="Fr" data-name="Francium" data-atomic="87">Fr</div>
+        <div class="element alkaline-earth" data-symbol="Ra" data-name="Rádio" data-atomic="88">Ra</div>
+        <div class="element actinide" data-symbol="Ac" data-name="Actínio" data-atomic="89">Ac</div>
+        <div class="element actinide" data-symbol="Th" data-name="Tório" data-atomic="90">Th</div>
+        <div class="element actinide" data-symbol="Pa" data-name="Protactínio" data-atomic="91">Pa</div>
+        <div class="element actinide" data-symbol="U" data-name="Urânio" data-atomic="92">U</div>
+        <div class="element actinide" data-symbol="Np" data-name="Netúnio" data-atomic="93">Np</div>
+        <div class="element actinide" data-symbol="Pu" data-name="Plutônio" data-atomic="94">Pu</div>
+        <div class="element actinide" data-symbol="Am" data-name="Amerício" data-atomic="95">Am</div>
+        <div class="element actinide" data-symbol="Cm" data-name="Cúrio" data-atomic="96">Cm</div>
+        <div class="element actinide" data-symbol="Bk" data-name="Berquélio" data-atomic="97">Bk</div>
+        <div class="element actinide" data-symbol="Cf" data-name="Califórnio" data-atomic="98">Cf</div>
+        <div class="element actinide" data-symbol="Es" data-name="Einstenio" data-atomic="99">Es</div>
+        <div class="element actinide" data-symbol="Fm" data-name="Férmio" data-atomic="100">Fm</div>
+        <div class="element actinide" data-symbol="Md" data-name="Mendelévio" data-atomic="101">Md</div>
+        <div class="element actinide" data-symbol="No" data-name="Nobélio" data-atomic="102">No</div>
+        <div class="element actinide" data-symbol="Lr" data-name="Lawrêncio" data-atomic="103">Lr</div>
+        <div class="element noble-gas" data-symbol="Rf" data-name="Rutherfordium" data-atomic="104">Rf</div>
+        <div class="element noble-gas" data-symbol="Db" data-name="Dubnínio" data-atomic="105">Db</div>
+        <div class="element noble-gas" data-symbol="Sg" data-name="Seabórgio" data-atomic="106">Sg</div>
+        <div class="element noble-gas" data-symbol="Bh" data-name="Bóhrio" data-atomic="107">Bh</div>
+        <div class="element noble-gas" data-symbol="Hs" data-name="Hássio" data-atomic="108">Hs</div>
+        <div class="element noble-gas" data-symbol="Mt" data-name="Meitnério" data-atomic="109">Mt</div>
+        <div class="element noble-gas" data-symbol="Ds" data-name="Darmstádio" data-atomic="110">Ds</div>
+        <div class="element noble-gas" data-symbol="Rg" data-name="Rênio" data-atomic="111">Rg</div>
+        <div class="element noble-gas" data-symbol="Cn" data-name="Copernício" data-atomic="112">Cn</div>
+        <div class="element noble-gas" data-symbol="Nh" data-name="Nihônio" data-atomic="113">Nh</div>
+        <div class="element noble-gas" data-symbol="Fl" data-name="Fleróvio" data-atomic="114">Fl</div>
+        <div class="element noble-gas" data-symbol="Mc" data-name="Moscóvio" data-atomic="115">Mc</div>
+        <div class="element noble-gas" data-symbol="Lv" data-name="Livermório" data-atomic="116">Lv</div>
+        <div class="element noble-gas" data-symbol="Ts" data-name="Tennessino" data-atomic="117">Ts</div>
+        <div class="element noble-gas" data-symbol="Og" data-name="Oganessônio" data-atomic="118">Og</div>
+    </div>
+
+    <div class="element-info" id="element-info"></div>
+
+    <div class="legend">
+        <div class="alkali"></div><span>Metais Alcalinos</span>
+        <div class="alkaline-earth"></div><span>Metais Alcalino-terrosos</span>
+        <div class="transition-metal"></div><span>Metais de Transição</span>
+        <div class="post-transition-metal"></div><span>Metais Pós-transição</span>
+        <div class="metalloid"></div><span>Metaloides</span>
+        <div class="non-metal"></div><span>Não Metais</span>
+        <div class="halogen"></div><span>Halogênios</span>
+        <div class="noble-gas"></div><span>Gases Nobres</span>
+        <div class="lanthanide"></div><span>Lantanídeos</span>
+        <div class="actinide"></div><span>Actinídeos</span>
+    </div>
+
+    <script>
+        const elements = document.querySelectorAll('.element');
+        const infoBox = document.getElementById('element-info');
+
+        elements.forEach(element => {
+            element.addEventListener('mouseenter', (event) => {
+                const symbol = element.getAttribute('data-symbol');
+                const name = element.getAttribute('data-name');
+                const atomic = element.getAttribute('data-atomic');
+
+                // Exibe as informações do elemento
+                infoBox.innerHTML = `<strong>${name} (${symbol})</strong><br>Número Atômico: ${atomic}`;
+                infoBox.style.display = 'block';
+
+                // Posiciona o box próximo ao elemento
+                const rect = event.target.getBoundingClientRect();
+                infoBox.style.left = `${rect.left + window.scrollX + 10}px`;
+                infoBox.style.top = `${rect.top + window.scrollY - 40}px`;
+            });
+
+            element.addEventListener('mouseleave', () => {
+                // Oculta o box de informações ao sair do elemento
+                infoBox.style.display = 'none';
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Seleciona todos os elementos com a classe .element
+            const elements = document.querySelectorAll('.element');
+
+            // Para cada elemento, adiciona um evento de clique
+            elements.forEach(function (element) {
+                element.addEventListener('click', function () {
+                    // Alterna a classe 'active' para mostrar ou esconder a caixa de informações
+                    element.classList.toggle('active');
+                });
+            });
+        });
+
+    </script>
+
+    <a href="index.html" class="button-link" id="go-to-page">Ir para Outra Página</a>
+
+</body>
+
+</html>

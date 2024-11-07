@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de Química</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <nav class="menu">
+        <div class="menu-toggle">
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="quimicaOrganica.html">Química Orgânica</a></li>
+            <li><a href="quimicaInorganica.html">Química Inorgânica</a></li>
+            <li><a href="questoesResolvidas.html">Questões Resolvidas</a></li>
+            <li><a href="tabelaInterativa.html">Tabela Periódica</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <h1>Exercícios de Química</h1>
+
+        <section>
+
+            <div class="question">
+                <p><strong>1. Qual o elemento químico com símbolo Fe?</strong></p>
+                <label><input type="radio" name="q1" value="errado"> Oxigênio</label>
+                <label><input type="radio" name="q1" value="errado"> Flúor</label>
+                <label><input type="radio" name="q1" value="correto"> Ferro</label>
+                <label><input type="radio" name="q1" value="errado"> Potássio</label>
+                <div class="feedback" id="feedback-q1"></div>
+                <div class="button-container">
+                    <button onclick="verificarResposta('q1', 'Ferro')">Validar Resposta</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>2. Qual o principal gás responsável pelo efeito estufa?</strong></p>
+                <label><input type="radio" name="q2" value="errado"> Oxigênio</label>
+                <label><input type="radio" name="q2" value="correto"> Dióxido de carbono</label>
+                <label><input type="radio" name="q2" value="errado"> Nitrogênio</label>
+                <label><input type="radio" name="q2" value="errado"> Argônio</label>
+                <div class="feedback" id="feedback-q2"></div>
+                <div class="button-container">
+                    <button onclick="verificarResposta('q2', 'Dióxido de carbono')">Validar Resposta</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>3. Qual é o pH neutro da água pura?</strong></p>
+                <label><input type="radio" name="q3" value="errado"> 5</label>
+                <label><input type="radio" name="q3" value="correto"> 7</label>
+                <label><input type="radio" name="q3" value="errado"> 9</label>
+                <label><input type="radio" name="q3" value="errado"> 10</label>
+                <div class="feedback" id="feedback-q3"></div>
+                <div class="button-container">
+                    <button onclick="verificarResposta('q3', '7')">Validar Resposta</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>4. Qual das alternativas representa uma cadeia carbônica linear?</strong></p>
+                <label><input type="radio" name="q4" value="correto"> C-C-C-C</label>
+                <label><input type="radio" name="q4" value="errado"> C=C=C</label>
+                <label><input type="radio" name="q4" value="errado"> C-C=C</label>
+                <label><input type="radio" name="q4" value="errado"> C-C-C-C-C=C</label>
+                <div class="feedback" id="feedback-q4"></div>
+                <div class="button-container">
+                    <button onclick="verificarResposta('q4', 'C-C-C-C')">Validar Resposta</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>5. Os hidrocarbonetos saturados são conhecidos como?</strong></p>
+                <label><input type="radio" name="q5" value="errado"> Alcenos</label>
+                <label><input type="radio" name="q5" value="errado"> Alcinos</label>
+                <label><input type="radio" name="q5" value="correto"> Alcanos</label>
+                <label><input type="radio" name="q5" value="errado"> Aromáticos</label>
+                <div class="feedback" id="feedback-q5"></div>
+                <div class="button-container">
+                    <button onclick="verificarResposta('q5', 'Alcanos')">Validar Resposta</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>6. Qual das seguintes opções é uma amina?</strong></p>
+                <label><input type="radio" name="q6" value="errado"> CH₃OH</label>
+                <label><input type="radio" name="q6" value="correto"> CH₃NH₂</label>
+                <label><input type="radio" name="q6" value="errado"> CH₃COOH</label>
+                <label><input type="radio" name="q6" value="errado"> C₆H₆</label>
+                <div class="feedback" id="feedback-q6"></div>
+                <div class="button-container">
+                    <button onclick="verificarResposta('q6', 'CH₃NH₂')">Validar Resposta</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>7. Qual é o nome correto para o composto CH₃-CH₂-CH₂-CHO?</strong></p>
+                <label><input type="radio" name="q7" value="errado"> Ácido Butanoico</label>
+                <label><input type="radio" name="q7" value="correto"> Butanal</label>
+                <label><input type="radio" name="q7" value="errado"> Propanoico</label>
+                <label><input type="radio" name="q7" value="errado"> Butano</label>
+                <div class="feedback" id="feedback-q7"></div>
+                <div class="button-container">
+                    <button onclick="verificarResposta('q7', 'Butanal')">Validar Resposta</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>8. A ligação iônica ocorre principalmente entre?</strong></p>
+                <label><input type="radio" name="q8" value="errado"> Dois não-metal</label>
+                <label><input type="radio" name="q8" value="correto"> Um metal e um não-metal</label>
+                <label><input type="radio" name="q8" value="errado"> Dois metais</label>
+                <label><input type="radio" name="q8" value="errado"> Dois átomos de carbono</label>
+                <div class="feedback" id="feedback-q8"></div>
+                <div class="button-container">
+                    <button onclick="verificarResposta('q8', 'Um metal e um não metal')">Validar Resposta</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>9. Os compostos que possuem a mesma fórmula molecular, mas diferentes estruturas são chamados
+                        de?</strong></p>
+                <label><input type="radio" name="q9" value="correto"> Isômeros</label>
+                <label><input type="radio" name="q9" value="errado"> Polímeros</label>
+                <label><input type="radio" name="q9" value="errado"> Isótopos</label>
+                <label><input type="radio" name="q9" value="errado"> Metanoicos</label>
+                <div class="feedback" id="feedback-q9"></div>
+                <div class="button-container">
+                    <button onclick="verificarResposta('q9', 'Isômeros')">Validar Resposta</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>10. Qual dos seguintes compostos apresenta uma cadeia carbônica ramificada?</strong></p>
+                <label><input type="radio" name="q10" value="errado"> C₄H₁₀</label>
+                <label><input type="radio" name="q10" value="correto"> C₅H₁₂</label>
+                <label><input type="radio" name="q9" value="errado"> C₆H₁₄</label>
+                <label><input type="radio" name="q10" value="errado"> C₈H₁₈</label>
+                <div class="feedback" id="feedback-q10"></div>
+                <div class="button-container">
+                    <button onclick="verificarResposta('q10', 'C₅H₁₂')">Validar Resposta</button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Química em Foco. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="quimica.js"></script>
+</body>
+
+</html>

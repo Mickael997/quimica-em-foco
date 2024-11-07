@@ -1,0 +1,505 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    /* Cor de fundo suave */
+}
+
+.menu {
+    background-color: #003366;
+    /* Azul escuro */
+    border-bottom: 3px solid #00509e;
+    /* Azul mais claro para a borda */
+}
+
+.menu ul {
+    list-style-type: none;
+}
+
+.menu>ul {
+    display: flex;
+    justify-content: center;
+}
+
+.menu ul li {
+    position: relative;
+}
+
+.menu ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #ffffff;
+    /* Texto branco */
+    text-decoration: none;
+    font-weight: bold;
+    /* Negrito para destacar os itens */
+    transition: background-color 0.3s, color 0.3s;
+    /* Transições suaves */
+}
+
+.menu ul li a:hover {
+    background-color: #00509e;
+    /* Azul claro ao passar o mouse */
+    color: #ffffff;
+    /* Mantém o texto branco */
+}
+
+/* Submenu */
+.menu ul li ul {
+    display: none;
+    position: absolute;
+    background-color: #004080;
+    /* Azul médio para o submenu */
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra para o submenu */
+}
+
+.menu ul li ul li a {
+    padding: 10px 15px;
+    font-weight: normal;
+    /* Texto normal para o submenu */
+}
+
+.menu ul li ul li a:hover {
+    background-color: #00509e;
+    /* Azul claro ao passar o mouse sobre o submenu */
+}
+
+.menu ul li:hover>ul {
+    display: block;
+}
+
+.content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    /* Fundo branco para o conteúdo */
+    border-radius: 8px;
+    /* Cantos arredondados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Sombra para o conteúdo */
+    text-align: justify;
+}
+
+.content h1 {
+    color: #003366;
+    /* Azul escuro para o título */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.content p {
+    line-height: 1.6;
+    /* Melhor legibilidade */
+    margin-bottom: 15px;
+    /* Espaçamento entre parágrafos */
+    text-align: justify;
+    /* Texto justificado */
+}
+
+.footer {
+    background-color: #003366;
+    /* Azul escuro */
+    color: #ffffff;
+    /* Texto branco */
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content p {
+    margin: 10px 0;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: #ffffff;
+    /* Texto branco para os links */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #00509e;
+    /* Azul claro ao passar o mouse sobre os links */
+}
+
+ol {
+    margin: 1em 0;
+    /* Margem vertical para a lista ordenada */
+    padding-left: 1.5em;
+    /* Para alinhar com o texto */
+}
+
+ol li {
+    margin-bottom: 15px;
+    /* Espaçamento entre os itens da lista */
+}
+
+.content p {
+    line-height: 1.6;
+    /* Melhor legibilidade */
+    margin-bottom: 15px;
+    /* Espaçamento entre parágrafos */
+    text-align: justify;
+    /* Texto justificado */
+}
+
+.question-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.question-list li {
+    margin-bottom: 20px;
+}
+
+.question-list strong {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.content {
+    max-width: 750px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: left;
+}
+
+.question {
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin: 8px 0;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #007BFF;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.feedback {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+input[type="radio"] {
+    accent-color: #007BFF;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+.question label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.question input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #4CAF50;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: background-color 0.3s;
+}
+
+.question input[type="radio"]:checked {
+    background-color: #4CAF50;
+}
+
+/* Estilo para os botões de validação */
+.question button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.question button:hover {
+    background-color: #45a049;
+}
+
+/* Centralização do botão de validação */
+.button-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Feedback */
+.feedback {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.table {
+    display: grid;
+    grid-template-columns: repeat(18, 50px);
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.element {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.placeholder {
+    background-color: transparent;
+}
+
+.metais-alcalinos {
+    background-color: #f4b400;
+}
+
+.metais-alcalino-terrosos {
+    background-color: #db4437;
+}
+
+.gases-nobres {
+    background-color: #4285f4;
+}
+
+.nao-metais {
+    background-color: #0f9d58;
+}
+
+#element-info {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+}
+
+.equipment {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+.equipment img {
+    width: 250px;
+    height: auto;
+}
+
+
+.description {
+    max-width: 600px;
+}
+
+/* Estilo do Menu */
+.menu {
+    background-color: #003366;
+    border-bottom: 3px solid #00509e;
+    position: relative;
+}
+
+.menu ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    position: relative;
+}
+
+.menu ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Efeito hover nos itens de menu */
+.menu ul li a:hover {
+    background-color: #00509e;
+}
+
+/* Submenus (inicialmente escondidos) */
+.sub-menu {
+    display: none;
+    position: absolute;
+    background-color: #004080;
+    top: 100%;
+    /* Alinha o submenu logo abaixo do item */
+    left: 0;
+    min-width: 160px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0s 0.3s, transform 0.3s;
+    transform: scaleY(0);
+    /* Inicialmente comprimido */
+    transform-origin: top center;
+    z-index: 10;
+    /* Garante que o submenu fique acima dos itens do menu */
+}
+
+.menu ul li.active>.sub-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: scaleY(1);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Menu Hamburguer */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.hamburger {
+    width: 30px;
+    height: 3px;
+    background-color: #ffffff;
+    transition: transform 0.3s;
+}
+
+/* Ajuste do Layout para dispositivos pequenos */
+@media (max-width: 768px) {
+    .menu ul {
+        display: none;
+        /* Oculta o menu por padrão */
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Exibe o menu hamburguer em telas pequenas */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Exibe o menu ao clicar no hamburguer */
+    .menu.active ul {
+        display: flex;
+    }
+
+    /* Alterar o ícone do hambúrguer para "X" quando o menu estiver aberto */
+    .hamburger.active {
+        transform: rotate(45deg);
+    }
+
+    .hamburger:nth-child(2).active {
+        opacity: 0;
+        /* Esconde a linha do meio */
+    }
+
+    .hamburger:nth-child(3).active {
+        transform: rotate(-45deg);
+    }
+
+    /* Ajuste nos submenus para dispositivos móveis */
+    .sub-menu {
+        position: relative;
+        transform: scaleY(0);
+        visibility: hidden;
+    }
+
+    .menu ul li.active>.sub-menu {
+        transform: scaleY(1);
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+/* Estilo das imagens e descrições (equipamentos) */
+.equipment {
+    display: flex;
+    flex-direction: column;
+    /* Organiza os itens em coluna (imagem em cima, texto embaixo) */
+    align-items: center;
+    /* Centraliza os itens */
+    margin: 20px 0;
+    /* Espaçamento entre as seções */
+    text-align: center;
+    /* Alinha o texto no centro */
+}
+
+.equipment img {
+    width: 100%;
+    /* Faz a imagem ocupar toda a largura possível (ajuste conforme necessidade) */
+    max-width: 250px;
+    /* Limita a largura da imagem para um máximo */
+    height: auto;
+    /* Mantém a proporção da imagem */
+    margin-bottom: 10px;
+    /* Espaçamento entre a imagem e o texto */
+}
+
+.equipment p {
+    font-size: 16px;
+    /* Ajuste o tamanho da fonte conforme necessário */
+    color: #333;
+    /* Cor do texto */
+    margin-top: 5px;
+    /* Espaçamento superior no texto */
+}
